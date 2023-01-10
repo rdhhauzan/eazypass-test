@@ -6,6 +6,27 @@
       "Package_event": "Day 1",
       "Name": "Siska",
       "typeId": 1
+    },
+    {
+      "Ticket_id": "123",
+      "Package_event": "Day1",
+      "Name": "Udin",
+      "typeId": 1,
+      "id": 2
+    },
+    {
+      "Ticket_id": "456",
+      "Package_event": "Day2",
+      "Name": "Idin",
+      "typeId": 2,
+      "id": 3
+    },
+    {
+      "Ticket_id": "789",
+      "Package_event": "2DayPass",
+      "Name": "Oden",
+      "typeId": 3,
+      "id": 4
     }
   ],
   "types": [
