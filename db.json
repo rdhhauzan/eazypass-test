@@ -1,0 +1,28 @@
+{
+  "tickets": [
+    {
+      "id": 1,
+      "Ticket_id": "12345566",
+      "Package_event": "Day 1",
+      "Name": "Siska",
+      "typeId": 1
+    }
+  ],
+  "types": [
+    {
+      "id": 1,
+      "Package_name": "Day 1",
+      "Package_date": "31 December 2022 12:00 - 20:00"
+    },
+    {
+      "id": 2,
+      "Package_name": "Day 2",
+      "Package_date": "1 January 2023 12:00 - 20:00"
+    },
+    {
+      "id": 3,
+      "Package_name": "2 Day Pass",
+      "Package_date": "31 December 2022 - 1 January 2023 12:00 - 20:00"
+    }
+  ]
+}
