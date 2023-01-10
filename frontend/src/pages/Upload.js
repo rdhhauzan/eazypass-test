@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import { useEffect, useState, useRef } from "react";
 import axiosApi from "../apis/axios";
+import Swal from "sweetalert2";
 import axios from "axios";
 export default function Upload() {
   const myForm = useRef();
@@ -34,9 +35,23 @@ export default function Upload() {
             "Access-Control-Allow-Origin": "*",
           },
           body: FormData,
-        }).then((data) => {
-          console.log(data);
-        });
+        })
+          .then((data) => {
+            Swal.fire({
+              title: "Success!",
+              icon: "success",
+              text: "Upload Success!",
+            });
+            console.log(data);
+          })
+          .catch((err) => {
+            console.log(err);
+            Swal.fire({
+              title: "Error!",
+              icon: "error",
+              text: err.response.data.message,
+            });
+          });
       } else if (myForm.current.buttonId == "preview") {
         await axios({
           method: "POST",
