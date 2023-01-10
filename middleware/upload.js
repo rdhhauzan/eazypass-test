@@ -1,14 +1,5 @@
 const multer = require("multer");
 
-const csvFilter = (req, file, cb) => {
-  // ! Filter to upload only .csv file
-  if (file.mimetype.includes("csv")) {
-    cb(null, true);
-  } else {
-    cb("Please upload only csv file.", false);
-  }
-};
-
 var storage = multer.diskStorage({
   // ! Destination where the csv store, same as in controller
   destination: (req, file, cb) => {
@@ -21,5 +12,5 @@ var storage = multer.diskStorage({
   },
 });
 
-let uploadFile = multer({ storage: storage, fileFilter: csvFilter });
+let uploadFile = multer({ storage: storage });
 module.exports = uploadFile;

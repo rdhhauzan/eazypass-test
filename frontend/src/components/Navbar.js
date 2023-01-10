@@ -40,6 +40,30 @@ export default function Navbar() {
                 Home
               </a>
             </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="#"
+                onClick={() => {
+                  navigate("/upload");
+                }}
+              >
+                Upload CSV
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="#"
+                onClick={() => {
+                  navigate("/type");
+                }}
+              >
+                Ticket Type List
+              </a>
+            </li>
           </ul>
         </div>
       </div>

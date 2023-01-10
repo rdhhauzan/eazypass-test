@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 
 app.post("/uploadcsv", upload.single("file"), Controller.uploadCsv);
 app.get("/getTypes", Controller.getTicketType);
-app.get("/preview", upload.single("file"), Controller.previewUploadCsv);
+app.post("/preview", upload.single("file"), Controller.previewUploadCsv);
 app.get("/getTickets", Controller.getAllTickets);
 
 app.listen(port, () => {

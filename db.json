@@ -8,25 +8,32 @@
       "typeId": 1
     },
     {
-      "Ticket_id": "123",
-      "Package_event": "Day 1",
-      "Name": "Udin",
-      "typeId": 1,
+      "Ticket_id": "993",
+      "Package_event": "2 Day Pass",
+      "Name": " Bejo",
+      "typeId": 3,
       "id": 2
     },
     {
-      "Ticket_id": "456",
+      "Ticket_id": "1002",
       "Package_event": "Day 2",
-      "Name": "Idin",
+      "Name": " Budi",
       "typeId": 2,
       "id": 3
     },
     {
-      "Ticket_id": "789",
+      "Ticket_id": "993",
       "Package_event": "2 Day Pass",
-      "Name": "Oden",
+      "Name": " Bejo",
       "typeId": 3,
       "id": 4
+    },
+    {
+      "Ticket_id": "1002",
+      "Package_event": "Day 2",
+      "Name": " Budi",
+      "typeId": 2,
+      "id": 5
     }
   ],
   "types": [
