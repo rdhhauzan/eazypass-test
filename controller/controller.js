@@ -87,10 +87,12 @@ class Controller {
 
   static async getAllTickets(req, res) {
     let url = `${dbUrl}/tickets?_expand=type`;
-    if (req.query.ticket_id) {
+    if (req.query.ticket_id && !req.query.package_event) {
       url = `${dbUrl}/tickets?_expand=type&Ticket_id=${req.query.ticket_id}`;
-    } else if (req.query.package_event) {
+    } else if (req.query.package_event && !req.query.ticket_id) {
       url = `${dbUrl}/tickets?_expand=type&Package_event=${req.query.package_event}`;
+    } else if (req.query.package_event && req.query.ticket_id) {
+      url = `${dbUrl}/tickets?_expand=type&Package_event=${req.query.package_event}&Ticket_id=${req.query.ticket_id}`;
     }
     try {
       await axios.get(url).then((data) => {
