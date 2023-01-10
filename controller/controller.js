@@ -1,7 +1,7 @@
 const fs = require("fs");
 const csv = require("fast-csv");
 const axios = require("axios");
-const dbUrl = "http://localhost:4040";
+const dbUrl = "http://localhost:15674";
 
 class Controller {
   static async uploadCsv(req, res) {
@@ -86,8 +86,14 @@ class Controller {
   }
 
   static async getAllTickets(req, res) {
+    let url = `${dbUrl}/tickets?_expand=type`;
+    if (req.query.ticket_id) {
+      url = `${dbUrl}/tickets?_expand=type&Ticket_id=${req.query.ticket_id}`;
+    } else if (req.query.package_event) {
+      url = `${dbUrl}/tickets?_expand=type&Package_event=${req.query.package_event}`;
+    }
     try {
-      await axios.get(`${dbUrl}/tickets`).then((data) => {
+      await axios.get(url).then((data) => {
         res.status(200).send(data.data);
       });
     } catch (error) {
