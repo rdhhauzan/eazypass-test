@@ -10,8 +10,10 @@ class Controller {
       }
 
       let ticket = [];
-      let path = __basedir + "/assets/uploads/" + req.file.filename;
+      // ! Define where the csv to store
+      let path = __basedir + "/uploads/" + req.file.filename;
 
+      // ! Read CSV File, and send it to db
       fs.createReadStream(path)
         .pipe(csv.parse({ headers: true }))
         .on("error", (error) => {
@@ -21,7 +23,12 @@ class Controller {
           ticket.push(row);
         })
         .on("end", () => {
-          console.log(ticket);
+          if (ticket.length == 1) {
+            console.log("satu");
+          } else {
+            console.log("lebih dari satu");
+          }
+          console.log(ticket.length);
           res.status(200).send(ticket);
         });
     } catch (error) {
