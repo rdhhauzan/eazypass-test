@@ -4,7 +4,7 @@ const axios = require("axios");
 const dbUrl = "http://localhost:4040";
 
 class Controller {
-  static uploadCsv(req, res) {
+  static async uploadCsv(req, res) {
     try {
       if (!req.file) {
         return res.status(400).send({ message: "Please upload a CSV File!" });
@@ -25,13 +25,12 @@ class Controller {
         })
         .on("end", () => {
           ticket.forEach((el, idx) => {
-            el["Package Event"] = el["Package Event"].replace(/\s/g, "");
             let type;
-            if (el["Package Event"] == "Day1") {
+            if (el["Package Event"] == "Day 1") {
               type = 1;
-            } else if (el["Package Event"] == "Day2") {
+            } else if (el["Package Event"] == "Day 2") {
               type = 2;
-            } else if (el["Package Event"] == "2DayPass") {
+            } else if (el["Package Event"] == "2 Day Pass") {
               type = 3;
             }
             // console.log(el["Package Event"]);
@@ -44,6 +43,53 @@ class Controller {
           });
           res.status(200).send(ticket);
         });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static async getTicketType(req, res) {
+    try {
+      await axios.get(`${dbUrl}/types`).then((data) => {
+        res.status(200).send(data.data);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static async previewUploadCsv(req, res) {
+    try {
+      if (!req.file) {
+        return res.status(400).send({ message: "Please upload a CSV File!" });
+      }
+
+      let ticket = [];
+      // ! Define where the csv to store
+      let path = __basedir + "/uploads/" + req.file.filename;
+
+      // ! Read CSV File, and send it to db
+      fs.createReadStream(path)
+        .pipe(csv.parse({ headers: true }))
+        .on("error", (error) => {
+          throw error.message;
+        })
+        .on("data", (row) => {
+          ticket.push(row);
+        })
+        .on("end", () => {
+          res.status(200).send(ticket);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static async getAllTickets(req, res) {
+    try {
+      await axios.get(`${dbUrl}/tickets`).then((data) => {
+        res.status(200).send(data.data);
+      });
     } catch (error) {
       console.log(error);
     }
